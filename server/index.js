@@ -2,6 +2,9 @@ import express from "express";
 import dotenv from "dotenv";
 import connectDb from "./db/connectDb.js";
 import cors from "cors";
+import { userRouter } from "./router/userRouter.js";
+import { errorMiddleWare } from "./middlewares/errorMiddleWare.js";
+import { productRouter } from "./router/productRouter.js";
 
 
 dotenv.config({
@@ -31,3 +34,7 @@ app.get("/", (req, res) => {
 });
 
 
+app.use("/api/v1/user", userRouter )
+app.use("/api/v1/product", productRouter )
+
+app.use(errorMiddleWare);

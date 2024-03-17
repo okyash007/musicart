@@ -7,7 +7,7 @@ const productSchema = new mongoose.Schema(
     about: { type: String, required: true },
     price: { type: Number, required: true },
     images: [{ type: String, required: true}],
-    rattings: { type: mongoose.Types.Decimal128 , required: true}
+    ratting: { type: mongoose.Types.Decimal128 , required: true}
   },
   { timestamps: true }
 );
