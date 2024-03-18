@@ -1,0 +1,17 @@
+.bg {
+  background-color: #2e0052;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  position: fixed;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.phone {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}

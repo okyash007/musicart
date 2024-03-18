@@ -1,15 +1,17 @@
 :root {
   line-height: 1.5;
   font-weight: 400;
-
-  color-scheme: dark;
+  font-family: "Roboto", sans-serif;
+  color-scheme: light;
 }
 
-pre {
-  white-space: pre;
+body {
+  margin: 0;
 }
 
-pre::before {
-  content: '\00B7'; /* Unicode character for a middle dot (·) */
-  margin-right: 5px; /* Adjust spacing as needed */
+p,
+h1,
+h2,
+h3 {
+  margin: 0;
 }
