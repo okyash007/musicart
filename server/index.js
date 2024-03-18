@@ -5,7 +5,7 @@ import cors from "cors";
 import { userRouter } from "./router/userRouter.js";
 import { errorMiddleWare } from "./middlewares/errorMiddleWare.js";
 import { productRouter } from "./router/productRouter.js";
-
+import { cartRouter } from "./router/cartRouter.js";
 
 dotenv.config({
   path: "./.env",
@@ -33,8 +33,8 @@ app.get("/", (req, res) => {
   res.json({ status: "giiiii" });
 });
 
-
-app.use("/api/v1/user", userRouter )
-app.use("/api/v1/product", productRouter )
+app.use("/api/v1/user", userRouter);
+app.use("/api/v1/product", productRouter);
+app.use("/api/v1/cart", cartRouter);
 
 app.use(errorMiddleWare);

@@ -34,7 +34,10 @@ export const userLogin = asyncHandler(async (req, res, next) => {
   if (!isValid.success) {
     return next(new apiError(400, "Invalid Inputs"));
   }
-  const existUser = await User.findOne({ email: isValid.data.email });
+  const existUser = await User.findOne({ email: isValid.data.email }).populate({
+    path: "cart",
+    populate: "items.product",
+  });
 
   if (!existUser) {
     return next(new apiError(400, "User Not Exist"));
