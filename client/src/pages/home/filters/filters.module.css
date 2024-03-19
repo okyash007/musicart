@@ -1,0 +1,9 @@
+.dropdown {
+  display: flex;
+  justify-content: space-between;
+}
+
+.content {
+  position: absolute;
+  left: 0;
+}

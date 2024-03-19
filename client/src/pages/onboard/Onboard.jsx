@@ -4,15 +4,13 @@ import Footer from "../../components/footer/Footer";
 import styles from "./onboard.module.css";
 import Login from "./login-signup/Login";
 import Signup from "./login-signup/Signup";
+import Logo from "../../components/logo/Logo";
 
 const Onboard = () => {
   return (
     <>
       <div className={styles.bg}>
-        <div className={styles.logo}>
-          <img src={logo} alt="" />
-          <h1>Musicart</h1>
-        </div>
+        <Logo />
         <Signup />
       </div>
       <Footer />

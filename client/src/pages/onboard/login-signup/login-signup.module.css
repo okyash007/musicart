@@ -1,6 +1,32 @@
 .bg {
   border: 2px solid #0000003a;
-  padding: 1rem;
+  padding: 2rem;
   border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 1rem;
+  max-width: 20rem;
 }
 
+.heading {
+  font-weight: 400;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+}
+
+.input input {
+  outline: none;
+  border: 2px solid #0000003a;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+}
+
+.error {
+  color: red;
+  font-size: 0.8rem;
+}

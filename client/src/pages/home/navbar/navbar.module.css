@@ -1,0 +1,9 @@
+.bg {
+  display: flex;
+  justify-content: space-between;
+}
+
+.bg div{
+    display: flex;
+    gap: 0.5rem;
+}

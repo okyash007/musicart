@@ -68,53 +68,66 @@ const Signup = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="name">name:</label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          onChange={handleChange}
-          value={formData.emailOrPhone}
-        />
-        {errors.name && <div>{errors.name}</div>}
-      </div>
-      <div>
-        <label htmlFor="phone">phone:</label>
-        <input
-          type="number"
-          id="phone"
-          name="phone"
-          onChange={handleChange}
-          value={formData.phone}
-        />
-        {errors.phone && <div>{errors.phone}</div>}
-      </div>
-      <div>
-        <label htmlFor="email">Email:</label>
-        <input
-          type="text"
-          id="email"
-          name="email"
-          onChange={handleChange}
-          value={formData.email}
-        />
-        {errors.email && <div>{errors.email}</div>}
-      </div>
-      <div>
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          onChange={handleChange}
-          value={formData.password}
-        />
-        {errors.password && <div>{errors.password}</div>}
-      </div>
-      <button type="submit">Sign up</button>
-    </form>
+    <>
+      <form onSubmit={handleSubmit} className={styles.bg}>
+        <h1 className={styles.heading}>Create account</h1>
+        <div className={styles.input}>
+          <label htmlFor="name">Your name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            onChange={handleChange}
+            value={formData.emailOrPhone}
+          />
+          {errors.name && <p className={styles.error}>{errors.name}</p>}
+        </div>
+        <div className={styles.input}>
+          <label htmlFor="phone">Mobile number</label>
+          <input
+            type="number"
+            id="phone"
+            name="phone"
+            onChange={handleChange}
+            value={formData.phone}
+          />
+          {errors.phone && <p className={styles.error}>{errors.phone}</p>}
+        </div>
+        <div className={styles.input}>
+          <label htmlFor="email">Email:</label>
+          <input
+            type="text"
+            id="email"
+            name="email"
+            onChange={handleChange}
+            value={formData.email}
+          />
+          {errors.email && <p className={styles.error}>{errors.email}</p>}
+        </div>
+        <div className={styles.input}>
+          <label htmlFor="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            onChange={handleChange}
+            value={formData.password}
+          />
+          {errors.password && <p className={styles.error}>{errors.password}</p>}
+        </div>
+        <p>
+          By enrolling your mobile phone number, you consent to receive
+          automated security notifications via text message from Musicart.
+          Message and data rates may apply.
+        </p>
+        <button type="submit">Sign up</button>
+        <p>
+          By continuing, you agree to Musicart privacy notice and conditions of
+          use.
+        </p>
+      </form>
+      <p>Already have an account? Sign in</p>
+    </>
   );
 };
 

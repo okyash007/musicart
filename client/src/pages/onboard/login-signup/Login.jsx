@@ -64,9 +64,10 @@ const Login = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="emailOrPhone">Email or Phone:</label>
+    <form onSubmit={handleSubmit} className={styles.bg}>
+      <h1 className={styles.heading}>Sign In</h1>
+      <div className={styles.input}>
+        <label htmlFor="emailOrPhone">Enter your email or mobile number</label>
         <input
           type="text"
           id="emailOrPhone"
@@ -74,10 +75,12 @@ const Login = () => {
           onChange={handleChange}
           value={formData.emailOrPhone}
         />
-        {errors.emailOrPhone && <div>{errors.emailOrPhone}</div>}
+        {errors.emailOrPhone && (
+          <p className={styles.error}>{errors.emailOrPhone}</p>
+        )}
       </div>
-      <div>
-        <label htmlFor="password">Password:</label>
+      <div className={styles.input}>
+        <label htmlFor="password">Password</label>
         <input
           type="password"
           id="password"
@@ -85,9 +88,13 @@ const Login = () => {
           onChange={handleChange}
           value={formData.password}
         />
-        {errors.password && <div>{errors.password}</div>}
+        {errors.password && <p className={styles.error}>{errors.password}</p>}
       </div>
       <button type="submit">Login</button>
+      <p>
+        By continuing, you agree to Musicart privacy notice and conditions of
+        use.
+      </p>
     </form>
   );
 };

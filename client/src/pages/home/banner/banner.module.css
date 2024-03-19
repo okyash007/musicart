@@ -1,0 +1,17 @@
+.bg {
+  background-image: linear-gradient(to right, #7286b4, #e794ce);
+  border-radius: 1rem;
+  position: relative;
+}
+
+.heading {
+  color: #2e0052;
+  padding: 2rem;
+}
+
+.girl{
+    position: absolute;
+    bottom: 0;
+    right: -2rem;
+    width: 18rem;
+}

@@ -1,0 +1,15 @@
+.bg {
+  display: flex;
+  align-items: center;
+  border: 2px solid #0000002a;
+  padding: 1rem;
+  border-radius: 2rem;
+  gap: 0.5rem;
+}
+
+.bg input {
+  flex-grow: 1;
+  border: 0;
+  outline: none;
+  font-size: 1rem;
+}
