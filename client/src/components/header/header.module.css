@@ -8,10 +8,18 @@
   position: fixed;
   width: 100%;
   box-sizing: border-box;
+  z-index: 1;
 }
 
 .phone {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+}
+
+.links a {
+  color: white;
+  &:hover {
+    text-decoration: underline;
+  }
 }

@@ -8,6 +8,12 @@ const userSchema = new mongoose.Schema(
       unique: true,
       match: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
     },
+    phone: {
+      type: Number,
+      required: true,
+      unique: true,
+      match: /^[6-9]{1}[0-9]{9}$/,
+    },
     name: {
       type: String,
       required: true,

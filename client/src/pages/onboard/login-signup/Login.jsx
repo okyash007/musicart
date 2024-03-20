@@ -2,8 +2,14 @@ import React, { useState } from "react";
 import styles from "./login-signup.module.css";
 import { validateEmailOrPhone } from "../../../utils/helper";
 import * as Yup from "yup";
+import { makePostRequest } from "../../../api/makePostRequest";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { setUser } from "../../../store/userSlice";
 
 const Login = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     emailOrPhone: "",
     password: "",
@@ -45,14 +51,11 @@ const Login = () => {
     validationSchema
       .validate(formData, { abortEarly: false })
       .then(() => {
-        console.log({
-          [validateEmailOrPhone(formData.emailOrPhone)]: formData.emailOrPhone,
-          password: formData.password,
-        });
         setErrors({
           emailOrPhone: "",
           password: "",
         });
+        userLogin(formData);
       })
       .catch((validationErrors) => {
         const newErrors = {};
@@ -62,6 +65,20 @@ const Login = () => {
         setErrors(newErrors);
       });
   };
+
+  async function userLogin(body) {
+    const data = await makePostRequest(
+      `http://localhost:5000/api/v1/user/login`,
+      body
+    );
+
+    if (data.success === true) {
+      const { name, email, phone, ...rest } = data.data.user;
+      localStorage.setItem("acess-token", data.data.acessToken);
+      dispatch(setUser({ name, email, phone }));
+      navigate("/");
+    }
+  }
 
   return (
     <form onSubmit={handleSubmit} className={styles.bg}>

@@ -1,0 +1,26 @@
+.image {
+  padding: 2rem;
+  background-color: #0066ff3a;
+  display: flex;
+  aspect-ratio: 1;
+  position: relative;
+}
+
+.image button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.image img {
+  object-fit: cover;
+}
+
+.details{
+  padding: 1rem;
+}
+
+.details p{
+  font-size: 1rem;
+  font-weight: 500;
+}

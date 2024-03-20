@@ -1,9 +1,17 @@
 .bg {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 3rem;
+  align-items: center;
+  height: 5vh;
 }
 
-.bg div{
-    display: flex;
-    gap: 0.5rem;
+.left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.left p {
+  padding-top: 0.5rem;
 }

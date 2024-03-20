@@ -1,12 +1,15 @@
-export async function makeGetRequest(url) {
+export async function makePostRequest(url, body) {
   const options = {
-    method: "GET",
-    credentials: "include",
+    method: "POST",
     headers: {
+      "Content-Type": "application/json",
       Accept: "application/json",
       credentials: "include",
       Authorization: localStorage.getItem("acess-token"),
     },
+    redirect: "follow",
+    credentials: "include",
+    body: JSON.stringify(body),
   };
   const response = await fetch(url, options);
   const data = await response.json();

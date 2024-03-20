@@ -5,9 +5,13 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import { hashPassword, matchPassword } from "../utils/hashPassword.js";
 import User from "../models/userModel.js";
 import { createToken } from "../utils/createToken.js";
+import { validateEmailOrPhone } from "../utils/helper.js";
 
 const userLoginSchema = z.object({
-  email: z.string().email(),
+  emailOrPhone: z.string().refine((value) => {
+    const result = validateEmailOrPhone(value);
+    return result !== "unknown";
+  }),
   password: z
     .string()
     .regex(
@@ -18,6 +22,7 @@ const userLoginSchema = z.object({
 const userSignupSchema = z.object({
   name: z.string(),
   email: z.string().email(),
+  phone: z.string().regex(/^[6-9]{1}[0-9]{9}$/),
   password: z
     .string()
     .regex(
@@ -26,7 +31,7 @@ const userSignupSchema = z.object({
 });
 
 export const userLogin = asyncHandler(async (req, res, next) => {
-  //   next(new apiError(400, "eror here"));
+  // next(new apiError(400, "eror here"));
   // return res.json( new apiResponse( 200, { message: "hiii" } ) );
 
   const isValid = userLoginSchema.safeParse(req.body);
@@ -34,7 +39,10 @@ export const userLogin = asyncHandler(async (req, res, next) => {
   if (!isValid.success) {
     return next(new apiError(400, "Invalid Inputs"));
   }
-  const existUser = await User.findOne({ email: isValid.data.email }).populate({
+  const existUser = await User.findOne({
+    [validateEmailOrPhone(isValid.data.emailOrPhone)]:
+      isValid.data.emailOrPhone,
+  }).populate({
     path: "cart",
     populate: "items.product",
   });
@@ -77,6 +85,7 @@ export const userSignup = asyncHandler(async (req, res, next) => {
   const newUser = new User({
     name: isValid.data.name,
     email: isValid.data.email,
+    phone: isValid.data.phone,
     password: hashedPassword,
   });
 
@@ -87,4 +96,13 @@ export const userSignup = asyncHandler(async (req, res, next) => {
   const { password, ...rest } = newUser._doc;
 
   return res.json(new apiResponse(200, { user: rest, acessToken }));
+});
+
+export const auth = asyncHandler(async (req, res, next) => {
+  const user = await User.findById(req.user.id).populate({
+    path: "cart",
+    populate: "items.product",
+  });
+
+  return res.json(new apiResponse(200, user));
 });
