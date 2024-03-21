@@ -4,6 +4,7 @@ import User from "../models/userModel.js";
 import Cart from "../models/cartModel.js";
 import { apiError } from "../utils/apiError.js";
 import Order from "../models/orderModel.js";
+import { apiResponse } from "../utils/apiResponse.js";
 
 const orderSchema = z.object({
   cart: z.string(),
@@ -50,4 +51,28 @@ export const placeOrder = asyncHandler(async (req, res, next) => {
   await cart.save();
 
   await newOrder.save();
+
+  return res.json(new apiResponse(200));
+});
+
+export const getOrders = asyncHandler(async (req, res, next) => {
+  const orders = await Order.find({ user: req.user.id }).populate("user");
+  return res.json(new apiResponse(200, orders));
+});
+
+export const getOrderById = asyncHandler(async (req, res, next) => {
+  const id = req.params.id;
+  const order = await Order.findById(id).populate({
+    path: "cart",
+    populate: "items.product",
+  });
+  if (!order) {
+    return next(new apiError(404, "Order not found"));
+  }
+
+  if (order.user.toString() !== req.user.id) {
+    return next(new apiError(400, "Order does not belong to user"));
+  }
+
+  return res.json(new apiResponse(200, order));
 });

@@ -23,7 +23,7 @@ const AddToCart = ({ productId }) => {
     );
     console.log(data);
     if (data.success === true) {
-      dispatch(setItems(data.data.items));
+      dispatch(setItems({ items: data.data.items, id: data.data._id }));
     }
   }
 

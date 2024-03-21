@@ -15,6 +15,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "./store/userSlice";
 import { setItems } from "./store/cartSlice";
 import Cart from "./pages/home/cart/Cart";
+import Checkout from "./pages/home/checkout/Checkout";
+import Invoices from "./pages/home/all-invoice/Invoices";
+import Invoice from "./pages/home/invoice/Invoice";
 
 const Body = () => {
   const dispatch = useDispatch();
@@ -37,6 +40,18 @@ const Body = () => {
         {
           path: "/cart",
           element: user ? <Cart /> : <Navigate to={"/"} />,
+        },
+        {
+          path: "/checkout",
+          element: user ? <Checkout /> : <Navigate to={"/"} />,
+        },
+        {
+          path: "/invoice",
+          element: user ? <Invoices /> : <Navigate to={"/"} />,
+        },
+        {
+          path: "/invoice/:id",
+          element: user ? <Invoice /> : <Navigate to={"/"} />,
         },
       ],
     },
@@ -70,9 +85,9 @@ const Body = () => {
       const { name, email, phone, ...rest } = data.data;
       dispatch(setUser({ name, email, phone }));
       if (rest.cart) {
-        dispatch(setItems(rest.cart.items));
+        dispatch(setItems({ items: rest.cart.items, id: rest.cart._id }));
       } else {
-        dispatch(setItems([]));
+        dispatch(setItems({ items: [], id: null }));
       }
     }
   }

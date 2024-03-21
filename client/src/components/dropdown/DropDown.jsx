@@ -2,7 +2,7 @@ import React, { Children, useState } from "react";
 import styles from "./dropdown.module.css";
 import { useClickOutSide } from "../../utils/hooks/useClickOutside";
 
-const DropDown = ({ children }) => {
+const DropDown = ({ children, button }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const dropDownRef = useClickOutSide(() => {
@@ -11,13 +11,13 @@ const DropDown = ({ children }) => {
 
   return (
     <div className={styles.bg} ref={dropDownRef}>
-      <button
+      <div
         onClick={() => {
           setIsOpen(!isOpen);
         }}
       >
-        open
-      </button>
+        {button}
+      </div>
       <div
         onClick={() => {
           setIsOpen(!isOpen);

@@ -1,14 +1,24 @@
 import React from "react";
 import styles from "./cart.module.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Item from "./item/Item";
+import { makePostRequest } from "../../../api/makePostRequest";
+import { setItems } from "../../../store/cartSlice";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
-  const items = useSelector((store) => store.cart.items);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const cart = useSelector((store) => store.cart);
 
-  const totalQuantity = items.reduce((acc, item) => acc + item.quantity, 0);
-
-  const totalPrice = items.reduce((acc, item) => acc + item.product.price, 0);
+  const totalQuantity = cart.items.reduce(
+    (acc, item) => acc + item.quantity,
+    0
+  );
+  const totalPrice = cart.items.reduce(
+    (acc, item) => acc + item.product.price * item.quantity,
+    0
+  );
 
   return (
     <div className={styles.bg}>
@@ -16,10 +26,10 @@ const Cart = () => {
       <div className={styles.content}>
         <div className={styles.itemsbox}>
           <div className={styles.items}>
-            {items.length === 0 ? (
+            {cart.items.length === 0 ? (
               <h1>No items in Cart</h1>
             ) : (
-              items.map((m) => <Item key={m.product._id} item={m} />)
+              cart.items.map((m) => <Item key={m.product._id} item={m} />)
             )}
           </div>
           <div className={styles.footer}>
@@ -29,7 +39,15 @@ const Cart = () => {
         </div>
         <div className={styles.details}>
           <p>PRODUCT DETAILS</p>
-          <button>Place Order</button>
+          <button
+            onClick={() => {
+              if (cart.items.length > 0) {
+                navigate("/checkout");
+              }
+            }}
+          >
+            Check out
+          </button>
         </div>
       </div>
     </div>

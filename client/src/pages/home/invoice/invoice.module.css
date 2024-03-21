@@ -1,0 +1,31 @@
+.bg {
+  display: flex;
+  gap: 2rem;
+}
+
+.summary {
+  width: 40%;
+  padding: 1.5rem;
+  border: 2px solid #0000004a;
+  height: fit-content;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.text {
+  font-size: 0.7rem;
+  text-align: center;
+  padding-block: 0.5rem;
+  border-bottom: 2px solid #0000004a;
+}
+
+.payment {
+  border: 2px solid #0000004a;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  box-sizing: border-box;
+  background-color: #0000001a;
+}

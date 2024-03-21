@@ -1,0 +1,26 @@
+.list {
+  display: flex;
+}
+
+.lable {
+  flex-grow: 1;
+  color: #0000007a;
+}
+
+.value {
+  color: #0000007a;
+}
+
+h2 {
+  padding-block: 0.5rem;
+}
+
+.total {
+  border-top: 2px solid #0000003a;
+  padding-top: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.total h3 {
+  color: #b52b00;
+}

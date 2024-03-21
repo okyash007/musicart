@@ -6,6 +6,7 @@ import { makePostRequest } from "../../../api/makePostRequest";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setUser } from "../../../store/userSlice";
+import { setItems } from "../../../store/cartSlice";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -76,6 +77,7 @@ const Login = () => {
       const { name, email, phone, ...rest } = data.data.user;
       localStorage.setItem("acess-token", data.data.acessToken);
       dispatch(setUser({ name, email, phone }));
+      dispatch(setItems({ items: [], id: null }));
       navigate("/");
     }
   }

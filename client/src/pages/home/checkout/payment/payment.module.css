@@ -1,0 +1,35 @@
+.content {
+  position: absolute;
+  width: 100%;
+  background-color: white;
+  margin-top: 0.5rem;
+  box-shadow: 0 0 10px 7px #0000001a;
+  border-radius: 0.5rem;
+}
+
+.content p {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: all 200ms;
+  &:hover {
+    background-color: aqua;
+  }
+}
+
+.content p:first-child{
+    border-radius: 0.5rem 0.5rem 0 0;
+    border-bottom: 2px solid #0000001a;
+}
+
+.content p:last-child{
+    border-radius: 0 0 0.5rem 0.5rem;
+    border-top: 2px solid #0000001a;
+}
+
+.button {
+  background-color: #0000001a;
+  box-sizing: border-box;
+  padding: 0.5rem 1rem;
+  border: 2px solid #0000005a;
+  border-radius: 0.5rem;
+}

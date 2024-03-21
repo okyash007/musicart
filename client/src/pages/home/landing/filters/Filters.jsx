@@ -22,7 +22,7 @@ const Filters = () => {
     <div className={styles.bg}>
       <Search />
       <div className={styles.dropdown}>
-        <DropDown>
+        <DropDown button={<p>open</p>}>
           <p
             className={styles.content}
             onClick={() => {
@@ -32,7 +32,7 @@ const Filters = () => {
             Filtersssssssssssssss
           </p>
         </DropDown>
-        <DropDown>
+        <DropDown button={<p>open</p>}>
           <p
             onClick={() => {
               console.log("hiiii");

@@ -1,0 +1,14 @@
+.bg {
+  display: flex;
+  border-bottom: 2px solid #0000004a;
+  padding: 1rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.right {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
