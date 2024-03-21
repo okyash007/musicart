@@ -6,6 +6,7 @@ import { userRouter } from "./router/userRouter.js";
 import { errorMiddleWare } from "./middlewares/errorMiddleWare.js";
 import { productRouter } from "./router/productRouter.js";
 import { cartRouter } from "./router/cartRouter.js";
+import { orderRouter } from "./router/orderRouter.js";
 
 dotenv.config({
   path: "./.env",
@@ -36,5 +37,6 @@ app.get("/", (req, res) => {
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/product", productRouter);
 app.use("/api/v1/cart", cartRouter);
+app.use("/api/v1/order", orderRouter);
 
 app.use(errorMiddleWare);

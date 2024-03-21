@@ -19,7 +19,10 @@ export const addProductToCart = asyncHandler(async (req, res, next) => {
 
   const { productId, quantity } = isValid.data;
 
-  const userCart = await Cart.findOne({ user: req.user.id });
+  const userCart = await Cart.findOne({
+    user: req.user.id,
+    isCompleted: false,
+  });
 
   if (!userCart) {
     // Create a new cart if it doesn't exist
@@ -28,6 +31,7 @@ export const addProductToCart = asyncHandler(async (req, res, next) => {
       user: req.user.id,
       items: [{ product: productId, quantity }],
     });
+    console.log(newCart);
     await newCart.save();
 
     const user = await User.findById(req.user.id);
@@ -51,7 +55,7 @@ export const addProductToCart = asyncHandler(async (req, res, next) => {
     await userCart.save();
   }
 
-  const cart = await Cart.findOne({ user: req.user.id })
+  const cart = await Cart.findOne({ user: req.user.id, isCompleted: false })
     .populate("items.product")
     .exec();
 
