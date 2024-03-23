@@ -45,6 +45,25 @@
   justify-content: space-between;
 }
 
-.details{
-    width: 30%;
+.details {
+  width: 30%;
+  min-width: 14rem;
+  padding: 1.5rem;
+}
+
+.list {
+  display: flex;
+  justify-content: space-between;
+}
+
+.total {
+  margin-top: 20vh;
+}
+
+.checkout {
+  width: 100%;
+}
+
+.noitems {
+  text-align: center;
 }

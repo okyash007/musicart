@@ -7,18 +7,18 @@ const OrderDetails = ({ cart, address, payment }) => {
   return (
     <div>
       <div className={styles.address}>
-        <h1>1. Delivery address</h1>
+        <h2>1. Delivery address</h2>
         <div>
           <p>Yash Verma</p>
           {address}
         </div>
       </div>
       <div className={styles.payment}>
-        <h1>2. Payment methord</h1>
+        <h2>2. Payment methord</h2>
         <div className={styles.paymentbox}>{payment}</div>
       </div>
       <div className={styles.cart}>
-        <h1>3. Review items and delivery</h1>
+        <h2>3. Review items and delivery</h2>
         <div className={styles.cartbox}>
           <div className={styles.cartgrid}>
             {cart.map((m, i) => (

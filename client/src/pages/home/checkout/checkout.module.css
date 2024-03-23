@@ -24,3 +24,17 @@
   padding: 1rem;
   font-family: "Roboto", sans-serif;
 }
+
+.error {
+  color: red;
+  font-size: 0.8rem;
+}
+
+.placeorder {
+  display: flex;
+  flex-direction: column;
+}
+
+.noitems {
+  text-align: center;
+}

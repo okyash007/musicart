@@ -13,6 +13,12 @@ const Checkout = () => {
     payment: "",
     address: "",
   });
+  const [errors, setErrors] = useState({
+    payment: "",
+    address: "",
+  });
+
+  console.log(errors);
 
   function changeFormData(key, value) {
     setFormData((prev) => ({ ...prev, [key]: value }));
@@ -23,8 +29,21 @@ const Checkout = () => {
     0
   );
 
+  function validateFormData() {
+    if (!formData.address.trim()) {
+      setErrors((prev) => ({ ...prev, address: "Address is required" }));
+    } else {
+      setErrors((prev) => ({ ...prev, address: "" }));
+    }
+    if (!formData.payment) {
+      setErrors((prev) => ({ ...prev, payment: "Payment is required" }));
+    } else {
+      setErrors((prev) => ({ ...prev, payment: "" }));
+    }
+  }
+
   if (cart.items.length === 0 || cart.id === null) {
-    return <Navigate to={"/cart"} replace={true} />;
+    return <h1 className={styles.noitems}>No items in cart</h1>;
   }
 
   return (
@@ -32,17 +51,45 @@ const Checkout = () => {
       <div>
         <OrderDetails
           cart={cart.items}
-          address={<textarea className={styles.address}></textarea>}
+          address={
+            <>
+              <textarea
+                onChange={(e) => {
+                  changeFormData("address", e.target.value);
+                }}
+                className={styles.address}
+              ></textarea>
+              {errors.address && (
+                <p className={styles.error}>{errors.address}</p>
+              )}
+            </>
+          }
           payment={
-            <Payment
-              changeFormData={changeFormData}
-              payment={formData.payment}
-            />
+            <div>
+              <Payment
+                changeFormData={changeFormData}
+                payment={formData.payment}
+              />
+              {errors.payment && (
+                <p className={styles.error}>{errors.payment}</p>
+              )}
+            </div>
           }
         />
       </div>
       <div className={styles.summary}>
-        <PlaceOrder />
+        <div
+          className={styles.placeorder}
+          onClick={() => {
+            validateFormData();
+          }}
+        >
+          {formData.payment && formData.address.trim() ? (
+            <PlaceOrder address={formData.address} payment={formData.payment} />
+          ) : (
+            <button>Place order</button>
+          )}
+        </div>
         <p className={styles.text}>
           By placing your order, you agree to Musicart privacy notice and
           conditions of use.

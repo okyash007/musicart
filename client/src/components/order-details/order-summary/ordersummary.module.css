@@ -24,3 +24,7 @@ h2 {
 .total h3 {
   color: #b52b00;
 }
+
+.bg{
+  min-width: 12rem;
+}

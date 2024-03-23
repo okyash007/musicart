@@ -8,7 +8,7 @@ const Payment = ({ changeFormData, payment }) => {
       <div className={styles.content}>
         <p
           onClick={() => {
-            changeFormData("payment", "Cash On Delivery");
+            changeFormData("payment", "Pay On Delivery");
           }}
         >
           Pay On Delivery

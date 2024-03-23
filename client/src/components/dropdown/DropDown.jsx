@@ -12,6 +12,7 @@ const DropDown = ({ children, button }) => {
   return (
     <div className={styles.bg} ref={dropDownRef}>
       <div
+        className={styles.button}
         onClick={() => {
           setIsOpen(!isOpen);
         }}
@@ -22,6 +23,7 @@ const DropDown = ({ children, button }) => {
         onClick={() => {
           setIsOpen(!isOpen);
         }}
+        className={styles.content}
       >
         {isOpen && children}
       </div>

@@ -3,7 +3,7 @@ import styles from "./ordersummary.module.css";
 
 const OrderSummary = ({ total }) => {
   return (
-    <div>
+    <div className={styles.bg}>
       <h2>Order Summary</h2>
       <div className={styles.list}>
         <p className={styles.lable}>Items : </p>

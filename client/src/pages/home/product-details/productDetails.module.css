@@ -2,8 +2,19 @@
   display: flex;
 }
 
-.list{
-    display: flex;
-    gap: 0.5rem;
-    margin-left: 0.5rem;
+.list {
+  display: flex;
+  gap: 0.5rem;
+  margin-left: 0.5rem;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 15rem;
+}
+
+.buttons button {
+  border-radius: 2rem;
 }

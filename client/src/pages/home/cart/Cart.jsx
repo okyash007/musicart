@@ -20,17 +20,19 @@ const Cart = () => {
     0
   );
 
+  if (cart.items.length === 0 || cart.id === null) {
+    return <h1 className={styles.noitems}>no items in cart</h1>;
+  }
+
   return (
     <div className={styles.bg}>
       <h1 className={styles.heading}> My Cart</h1>
       <div className={styles.content}>
         <div className={styles.itemsbox}>
           <div className={styles.items}>
-            {cart.items.length === 0 ? (
-              <h1>No items in Cart</h1>
-            ) : (
-              cart.items.map((m) => <Item key={m.product._id} item={m} />)
-            )}
+            {cart.items.map((m) => (
+              <Item key={m.product._id} item={m} />
+            ))}
           </div>
           <div className={styles.footer}>
             <p>{`${totalQuantity} Items`}</p>
@@ -38,8 +40,23 @@ const Cart = () => {
           </div>
         </div>
         <div className={styles.details}>
-          <p>PRODUCT DETAILS</p>
+          <h3>PRICE DETAILS</h3>
+          <div className={styles.list}>
+            <div className={styles.keys}>
+              <p>Total MRP</p>
+              <p>Discount on MRP</p>
+              <p>Convenience Fee</p>
+              <h3 className={styles.total}>Total Amount</h3>
+            </div>
+            <div className={styles.value}>
+              <p>{"₹ " + totalPrice}</p>
+              <p>₹ 0</p>
+              <p>₹ 45</p>
+              <h3 className={styles.total}>₹ {totalPrice + 45}</h3>
+            </div>
+          </div>
           <button
+            className={styles.checkout}
             onClick={() => {
               if (cart.items.length > 0) {
                 navigate("/checkout");

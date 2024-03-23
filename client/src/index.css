@@ -19,3 +19,13 @@ h3 {
 a {
   text-decoration: none;
 }
+
+.button1 {
+  outline: none;
+  border: 0;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+}

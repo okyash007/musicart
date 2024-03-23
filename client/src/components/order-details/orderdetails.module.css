@@ -2,12 +2,13 @@
   display: flex;
 }
 
-.address h1 {
+.address h2 {
   flex-grow: 1;
 }
 
 .address div {
   width: 30%;
+  min-width: 10rem;
   display: flex;
   flex-direction: column;
 }
@@ -16,12 +17,13 @@
   display: flex;
 }
 
-.cart h1 {
+.cart h2 {
   flex-grow: 1;
 }
 
 .cart .cartbox {
   width: 30%;
+  min-width: 10rem;
 }
 
 .cartgrid {
@@ -48,7 +50,7 @@
   padding: 1rem;
 }
 
-.payment h1 {
+.payment h2 {
   flex-grow: 1;
 }
 
@@ -58,5 +60,6 @@
 
 .paymentbox {
   width: 30%;
+  min-width: 10rem;
   margin-block: auto;
 }

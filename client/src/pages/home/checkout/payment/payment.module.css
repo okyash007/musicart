@@ -12,24 +12,26 @@
   cursor: pointer;
   transition: all 200ms;
   &:hover {
-    background-color: aqua;
+    background-color: blue;
+    color: white;
   }
 }
 
 .content p:first-child{
     border-radius: 0.5rem 0.5rem 0 0;
-    border-bottom: 2px solid #0000001a;
+    border-bottom: 1px solid #0000001a;
 }
 
 .content p:last-child{
     border-radius: 0 0 0.5rem 0.5rem;
-    border-top: 2px solid #0000001a;
+    border-top: 1px solid #0000001a;
 }
 
 .button {
   background-color: #0000001a;
   box-sizing: border-box;
   padding: 0.5rem 1rem;
-  border: 2px solid #0000005a;
+  border: 1px solid #0000005a;
   border-radius: 0.5rem;
+  cursor: pointer;
 }
