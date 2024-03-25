@@ -22,7 +22,7 @@ connectDb().then(() => {
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://musicart-phi.vercel.app/"],
+    origin: ["http://localhost:5173", "https://musicart-phi.vercel.app"],
     credentials: true,
   })
 );
