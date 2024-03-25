@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setUser } from "../../../store/userSlice";
 import { setItems } from "../../../store/cartSlice";
+import { backendUrl } from "../../../utils/constants";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -69,7 +70,7 @@ const Login = () => {
 
   async function userLogin(body) {
     const data = await makePostRequest(
-      `http://localhost:5000/api/v1/user/login`,
+      `${backendUrl}/api/v1/user/login`,
       body
     );
 

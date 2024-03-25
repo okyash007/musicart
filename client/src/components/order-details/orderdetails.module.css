@@ -1,4 +1,6 @@
-.address {
+.address,
+.payment,
+.cart {
   display: flex;
 }
 
@@ -13,15 +15,11 @@
   flex-direction: column;
 }
 
-.cart {
-  display: flex;
-}
-
 .cart h2 {
   flex-grow: 1;
 }
 
-.cart .cartbox {
+.cartbox {
   width: 30%;
   min-width: 10rem;
 }
@@ -54,12 +52,20 @@
   flex-grow: 1;
 }
 
-.payment {
-  display: flex;
-}
-
 .paymentbox {
   width: 30%;
   min-width: 10rem;
   margin-block: auto;
+}
+
+@media only screen and (max-width: 650px) {
+  .address,
+  .payment,
+  .cart {
+    flex-direction: column;
+  }
+
+  .paymentbox, .address div, .cartbox {
+    width: 100%;
+  }
 }

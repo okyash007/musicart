@@ -56,7 +56,9 @@ export const placeOrder = asyncHandler(async (req, res, next) => {
 });
 
 export const getOrders = asyncHandler(async (req, res, next) => {
-  const orders = await Order.find({ user: req.user.id }).populate("user");
+  const orders = await Order.find({ user: req.user.id })
+    .sort({ createdAt: -1 })
+    .populate("user");
   return res.json(new apiResponse(200, orders));
 });
 

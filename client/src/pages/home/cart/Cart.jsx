@@ -56,7 +56,7 @@ const Cart = () => {
             </div>
           </div>
           <button
-            className={styles.checkout}
+            className={styles.checkout + " " + "button1"}
             onClick={() => {
               if (cart.items.length > 0) {
                 navigate("/checkout");

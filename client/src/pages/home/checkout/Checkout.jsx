@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { Navigate } from "react-router-dom";
 import PlaceOrder from "./PlaceOrder";
 import OrderDetails from "../../../components/order-details/OrderDetails";
 import OrderSummary from "../../../components/order-details/order-summary/OrderSummary";
@@ -17,8 +16,6 @@ const Checkout = () => {
     payment: "",
     address: "",
   });
-
-  console.log(errors);
 
   function changeFormData(key, value) {
     setFormData((prev) => ({ ...prev, [key]: value }));
@@ -87,7 +84,9 @@ const Checkout = () => {
           {formData.payment && formData.address.trim() ? (
             <PlaceOrder address={formData.address} payment={formData.payment} />
           ) : (
-            <button>Place order</button>
+            <button className={"button1"+ " " + styles.place}>
+              Place order
+            </button>
           )}
         </div>
         <p className={styles.text}>

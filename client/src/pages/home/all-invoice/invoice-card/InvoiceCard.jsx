@@ -14,7 +14,9 @@ const InvoiceCard = ({ invoice }) => {
         </div>
       </div>
       <Link to={`/invoice/${invoice._id}`}>
-        <button>View Invoice</button>
+        <button className={styles.button + " " + "button1"}>
+          View Invoice
+        </button>
       </Link>
     </div>
   );

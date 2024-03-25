@@ -15,3 +15,52 @@
 .left p {
   padding-top: 0.5rem;
 }
+
+.cart {
+  background-color: #1d7000;
+  color: white;
+  border-radius: 2rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.bottomnav {
+  position: fixed;
+  bottom: 0;
+  z-index: 3;
+  background-color: white;
+  display: none;
+  width: 100%;
+  box-sizing: border-box;
+  height: 4rem;
+  border-top: 2px solid #0000005a;
+}
+
+.bottomnav div,
+.bottomnav a {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.bottomnav div p,
+.bottomnav a p {
+  font-size: 0.7rem;
+}
+
+.select {
+  box-shadow: inset 0 4px 0 0px black;
+}
+
+@media only screen and (max-width: 550px) {
+  .bg {
+    display: none;
+  }
+  .bottomnav {
+    display: flex;
+    justify-content: space-between;
+    padding-inline: 4%;
+  }
+}

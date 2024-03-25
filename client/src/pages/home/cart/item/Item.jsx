@@ -5,6 +5,7 @@ import Loader from "../../../../components/loader/Loader";
 import { useDispatch } from "react-redux";
 import { setItems } from "../../../../store/cartSlice";
 import { makePostRequest } from "../../../../api/makePostRequest";
+import { backendUrl } from "../../../../utils/constants";
 
 const Item = ({ item }) => {
   const [loading, setLoading] = useState(false);
@@ -12,7 +13,7 @@ const Item = ({ item }) => {
 
   async function addToCart(productId, quantity) {
     const data = await makePostRequest(
-      `http://localhost:5000/api/v1/cart/add`,
+      `${backendUrl}/api/v1/cart/add`,
       {
         productId,
         quantity,

@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styles from "./productDetails.module.css";
 import Loader from "../../../components/loader/Loader";
+import { backendUrl } from "../../../utils/constants";
 
 const AddToCart = ({ productId }) => {
   const dispatch = useDispatch();
@@ -23,13 +24,12 @@ const AddToCart = ({ productId }) => {
 
   async function addToCart() {
     const data = await makePostRequest(
-      `http://localhost:5000/api/v1/cart/add`,
+      `${backendUrl}/api/v1/cart/add`,
       {
         productId,
         quantity: quantityInCart + 1,
       }
     );
-    console.log(data);
     changeLoading("addToCart", false);
     if (data.success === true) {
       dispatch(setItems({ items: data.data.items, id: data.data._id }));

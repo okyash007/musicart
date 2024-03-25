@@ -1,5 +1,5 @@
 .bg {
-  max-height: calc(95vh - 9rem);
+  max-height: calc(95vh - 12rem);
   display: flex;
   flex-direction: column;
 }
@@ -48,7 +48,7 @@
 .details {
   width: 30%;
   min-width: 14rem;
-  padding: 1.5rem;
+  padding: 2%;
 }
 
 .list {
@@ -62,8 +62,20 @@
 
 .checkout {
   width: 100%;
+  background-color: #ffd600;
+  border-radius: 0.5rem;
 }
 
 .noitems {
   text-align: center;
 }
+/* 
+@media only screen and (max-width: 550px) {
+  .itemsbox,
+  .list {
+    display: none;
+  }
+  .details {
+    width: 100%;
+  }
+} */

@@ -18,6 +18,7 @@ import Cart from "./pages/home/cart/Cart";
 import Checkout from "./pages/home/checkout/Checkout";
 import Invoices from "./pages/home/all-invoice/Invoices";
 import Invoice from "./pages/home/invoice/Invoice";
+import { backendUrl } from "./utils/constants";
 
 const Body = () => {
   const dispatch = useDispatch();
@@ -78,7 +79,7 @@ const Body = () => {
   ]);
 
   async function auth() {
-    const data = await makeGetRequest(`http://localhost:5000/api/v1/user/auth`);
+    const data = await makeGetRequest(`${backendUrl}/api/v1/user/auth`);
 
     if (data.success === true) {
       setLoading(false);

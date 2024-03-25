@@ -4,6 +4,7 @@
   display: flex;
   aspect-ratio: 1;
   position: relative;
+  border-radius: 0.25rem;
 }
 
 .image button {
@@ -16,11 +17,16 @@
   object-fit: cover;
 }
 
-.details{
+.details {
   padding: 1rem;
 }
 
-.details p{
+.details p {
   font-size: 1rem;
   font-weight: 500;
+}
+
+.bg {
+  border: 2px solid #0000003a;
+  border-radius: 0.5rem;
 }

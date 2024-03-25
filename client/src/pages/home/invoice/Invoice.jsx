@@ -4,15 +4,14 @@ import { makeGetRequest } from "../../../api/makeGetRequest";
 import styles from "./invoice.module.css";
 import OrderDetails from "../../../components/order-details/OrderDetails";
 import OrderSummary from "../../../components/order-details/order-summary/OrderSummary";
+import { backendUrl } from "../../../utils/constants";
 
 const Invoice = () => {
   const { id } = useParams();
   const [invoice, setInvoice] = useState(null);
 
   async function getOrder() {
-    const data = await makeGetRequest(
-      `http://localhost:5000/api/v1/order/${id}`
-    );
+    const data = await makeGetRequest(`${backendUrl}/api/v1/order/${id}`);
     if (data.success === true) {
       setInvoice(data.data);
     }

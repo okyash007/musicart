@@ -1,14 +1,9 @@
 .bg {
-  background-color: #2e0052;
   color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
-  position: fixed;
   width: 100%;
-  box-sizing: border-box;
-  z-index: 1;
 }
 
 .phone {
@@ -21,5 +16,38 @@
   color: white;
   &:hover {
     text-decoration: underline;
+  }
+}
+
+.res {
+  height: 3rem;
+  padding-inline: 2%;
+  display: flex;
+  align-items: center;
+  background-color: #2e0052;
+  position: fixed;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 1;
+}
+
+.search {
+  width: 100%;
+  display: none;
+}
+
+.search div{
+  border-radius: 1rem;
+}
+
+@media only screen and (max-width: 550px) {
+  .bg {
+    display: none;
+  }
+  .search{
+    display: block;
+  }
+  .res{
+    height: 5rem;
   }
 }

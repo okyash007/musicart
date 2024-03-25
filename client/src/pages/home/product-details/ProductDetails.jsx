@@ -3,16 +3,17 @@ import { useParams } from "react-router-dom";
 import styles from "./productDetails.module.css";
 import { makeGetRequest } from "../../../api/makeGetRequest";
 import AddToCart from "./AddToCart";
+import { Carousel } from "react-responsive-carousel";
+import CarouselImages from "./CarouselImages";
+import { backendUrl } from "../../../utils/constants";
 
 const ProductDetails = () => {
   const { id } = useParams();
   const [productDetails, setProductDetails] = useState(null);
 
-  console.log(productDetails);
-
   async function getProductDetails() {
     const data = await makeGetRequest(
-      `http://localhost:5000/api/v1/product/${id}`
+      `${backendUrl}/api/v1/product/${id}`
     );
     setProductDetails(data.data);
   }
@@ -25,12 +26,31 @@ const ProductDetails = () => {
     return <div>Loading...</div>;
   }
 
+  
+
   return (
     <div className={styles.bg}>
       <div className={styles.images}>
-        <img src={productDetails.images[0]} alt="" />
+        <img
+          className={styles.selected}
+          src={productDetails.images[0]}
+          alt=""
+        />
+        <div className={styles.allimages}>
+          {productDetails.images.map((m) => (
+            <div key={m} className={styles.image}>
+              <img src={m} alt="" />
+            </div>
+          ))}
+          <div className={styles.image}>
+            <img src={productDetails.images[0]} alt="" />
+          </div>
+        </div>
       </div>
-      <div>
+      <div className={styles.carousel}>
+        <CarouselImages images={productDetails.images} />
+      </div>
+      <div className={styles.details}>
         <h1>{`${productDetails.brand} ${productDetails.name}`}</h1>
         <h2>{`Price - ₹ ${productDetails.price}`}</h2>
         <p>{`${productDetails.color} | ${productDetails.type}`}</p>

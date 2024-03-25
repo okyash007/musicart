@@ -1,8 +1,6 @@
 :root {
-  line-height: 1.5;
   font-weight: 400;
   font-family: "Roboto", sans-serif;
-  color-scheme: light;
 }
 
 body {
@@ -28,4 +26,25 @@ a {
   cursor: pointer;
   display: flex;
   justify-content: center;
+  transition: all 200ms;
+  border: 2px solid white;
+  &:hover {
+    box-shadow: 0 0 0 2px #000000;
+  }
+}
+
+.carousel .carousel-status {
+  display: none;
+}
+
+.carousel .control-dots {
+  position: static;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.carousel.carousel-slider{
+  display: flex;
+  flex-direction: column-reverse;
 }

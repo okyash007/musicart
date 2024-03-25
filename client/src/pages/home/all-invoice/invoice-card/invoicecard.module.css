@@ -12,3 +12,9 @@
   align-items: center;
 }
 
+.button {
+  color: white;
+  background-color: #2e0052;
+  border-radius: 0.5rem;
+  width: max-content;
+}

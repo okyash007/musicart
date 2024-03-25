@@ -7,11 +7,16 @@
 .heading {
   color: #2e0052;
   padding: 2rem;
+  font-size: 1.5rem;
 }
 
-.girl{
-    position: absolute;
-    bottom: 0;
-    right: -2rem;
-    width: 18rem;
+.girl {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 15rem;
+}
+
+.res{
+  padding-inline: 2%;
 }

@@ -31,7 +31,39 @@ export const addProduct = asyncHandler((req, res, next) => {
 });
 
 export const getProducts = asyncHandler(async (req, res, next) => {
-  const products = await Product.find();
+  const { name, lte, gte, color, brand, type, sort } = req.query;
+
+  const [field, order] = sort.split(/([+-])/);
+  const sortOrder = order === "-" ? -1 : 1;
+
+  if (sort && field !== "name" && field !== "price") {
+    return next(new apiError(400, "Invalid sort Inputs"));
+  }
+
+  if (gte > lte) {
+    return next(new apiError(400, "Invalid Inputs"));
+  }
+
+  const query = {};
+
+  if (brand) query.brand = brand;
+  if (color) query.color = color;
+  if (type) query.type = type;
+  if (gte && lte) {
+    query.price = { $gte: parseFloat(gte), $lte: parseFloat(lte) };
+  } else if (gte) {
+    query.price = { $gte: parseFloat(gte) };
+  } else if (lte) {
+    query.price = { $lte: parseFloat(lte) };
+  }
+  if (name) {
+    const regexPattern = new RegExp(name, "i");
+    query.name = regexPattern;
+  }
+
+  const products = await Product.find(query).sort(
+    sort ? { [field]: sortOrder } : {}
+  );
   return res.json(new apiResponse(200, products));
 });
 
@@ -42,4 +74,12 @@ export const getProductById = asyncHandler(async (req, res, next) => {
     return next(new apiError(404, "Product not found"));
   }
   return res.json(new apiResponse(200, product));
+});
+
+export const getFilters = asyncHandler(async (req, res, next) => {
+  const colors = await Product.distinct("color");
+  const brands = await Product.distinct("brand");
+  const types = await Product.distinct("type");
+
+  return res.json(new apiResponse(200, { colors, brands, types }));
 });

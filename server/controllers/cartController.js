@@ -31,7 +31,6 @@ export const addProductToCart = asyncHandler(async (req, res, next) => {
       user: req.user.id,
       items: [{ product: productId, quantity }],
     });
-    console.log(newCart);
     await newCart.save();
 
     const user = await User.findById(req.user.id);

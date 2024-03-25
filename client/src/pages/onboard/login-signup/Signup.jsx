@@ -50,7 +50,6 @@ const Signup = () => {
     validationSchema
       .validate(formData, { abortEarly: false })
       .then(() => {
-        console.log(formData);
         setErrors({
           email: "",
           phone: "",

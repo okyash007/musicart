@@ -38,3 +38,14 @@
 .noitems {
   text-align: center;
 }
+
+.place {
+  background-color: #ffd600;
+  border-radius: 0.5rem;
+}
+
+@media only screen and (max-width: 550px) {
+  .summary {
+    display: none;
+  }
+}
