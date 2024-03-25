@@ -12,14 +12,15 @@ import { useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const cart = useSelector((store) => store.cart);
+  const user = useSelector((store) => store.user.data);
 
   const location = useLocation();
   const currentPath = location.pathname;
 
-  const totalQuantity = cart.items.reduce(
+  const totalQuantity = user ? cart.items.reduce(
     (acc, item) => acc + item.quantity,
     0
-  );
+  ) : 0
 
   return (
     <>
