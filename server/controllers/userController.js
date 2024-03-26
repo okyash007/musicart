@@ -74,7 +74,10 @@ export const userSignup = asyncHandler(async (req, res, next) => {
     return next(new apiError(400, "Invalid Inputs"));
   }
 
-  const existUser = await User.findOne({ email: isValid.data.email });
+  const existUser = await User.findOne({
+    email: isValid.data.email,
+    phone: isValid.data.phone,
+  });
 
   if (existUser) {
     return next(new apiError(400, "User Already Exist"));

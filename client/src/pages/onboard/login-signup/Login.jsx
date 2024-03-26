@@ -8,10 +8,12 @@ import { useNavigate } from "react-router-dom";
 import { setUser } from "../../../store/userSlice";
 import { setItems } from "../../../store/cartSlice";
 import { backendUrl } from "../../../utils/constants";
+import Loader from "../../../components/loader/Loader";
 
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     emailOrPhone: "",
     password: "",
@@ -57,6 +59,7 @@ const Login = () => {
           emailOrPhone: "",
           password: "",
         });
+        setLoading(true);
         userLogin(formData);
       })
       .catch((validationErrors) => {
@@ -69,14 +72,12 @@ const Login = () => {
   };
 
   async function userLogin(body) {
-    const data = await makePostRequest(
-      `${backendUrl}/api/v1/user/login`,
-      body
-    );
+    const data = await makePostRequest(`${backendUrl}/api/v1/user/login`, body);
 
     if (data.success === true) {
       const { name, email, phone, ...rest } = data.data.user;
       localStorage.setItem("acess-token", data.data.acessToken);
+      setLoading(false);
       dispatch(setUser({ name, email, phone }));
       dispatch(setItems({ items: [], id: null }));
       navigate("/");
@@ -110,7 +111,10 @@ const Login = () => {
         />
         {errors.password && <p className={styles.error}>{errors.password}</p>}
       </div>
-      <button type="submit">Login</button>
+      <button className={styles.submit + " " + "button1"}>
+        {loading ? <Loader color={"white"} /> : "Login"}
+      </button>
+
       <p>
         By continuing, you agree to Musicart privacy notice and conditions of
         use.

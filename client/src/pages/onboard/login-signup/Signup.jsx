@@ -1,8 +1,18 @@
 import React, { useState } from "react";
 import styles from "./login-signup.module.css";
 import * as Yup from "yup";
+import Loader from "../../../components/loader/Loader";
+import { makePostRequest } from "../../../api/makePostRequest";
+import { backendUrl } from "../../../utils/constants";
+import { useNavigate } from "react-router-dom";
+import { setUser } from "../../../store/userSlice";
+import { setItems } from "../../../store/cartSlice";
+import { useDispatch } from "react-redux";
 
 const Signup = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     phone: "",
@@ -56,6 +66,8 @@ const Signup = () => {
           name: "",
           password: "",
         });
+        setLoading(true);
+        userSignUp(formData);
       })
       .catch((validationErrors) => {
         const newErrors = {};
@@ -65,6 +77,22 @@ const Signup = () => {
         setErrors(newErrors);
       });
   };
+
+  async function userSignUp(body) {
+    const data = await makePostRequest(
+      `${backendUrl}/api/v1/user/signup`,
+      body
+    );
+
+    if (data.success === true) {
+      const { name, email, phone, ...rest } = data.data.user;
+      localStorage.setItem("acess-token", data.data.acessToken);
+      setLoading(false);
+      dispatch(setUser({ name, email, phone }));
+      dispatch(setItems({ items: [], id: null }));
+      navigate("/");
+    }
+  }
 
   return (
     <>
@@ -119,7 +147,9 @@ const Signup = () => {
           automated security notifications via text message from Musicart.
           Message and data rates may apply.
         </p>
-        <button type="submit">Sign up</button>
+        <button className={styles.submit + " " + "button1"} type="submit">
+          {loading ? <Loader color={"white"} /> : "Sign up"}
+        </button>
         <p>
           By continuing, you agree to Musicart privacy notice and conditions of
           use.

@@ -5,13 +5,13 @@ const userSchema = new mongoose.Schema(
     email: {
       type: String,
       required: true,
-      unique: true,
+      unique: [true, "email must be unique"],
       match: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
     },
     phone: {
       type: Number,
       required: true,
-      unique: true,
+      unique: [true, 'Phone Number must be unique'],
       match: /^[6-9]{1}[0-9]{9}$/,
     },
     name: {

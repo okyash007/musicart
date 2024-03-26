@@ -30,3 +30,9 @@
   color: red;
   font-size: 0.8rem;
 }
+
+.submit {
+  background-color: #2e0052;
+  color: white;
+  border-radius: 0.5rem;
+}
