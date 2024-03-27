@@ -54,157 +54,134 @@ const Filters = () => {
       </div>
       <div className={styles.dropdown}>
         <div className={styles.left}>
-          {products.card === "grid" ? (
-            <IoGrid size={"1.5rem"} />
-          ) : (
-            <IoGridOutline
-              size={"1.5rem"}
-              onClick={() => {
-                dispatch(setCard("grid"));
-              }}
-            />
-          )}
-          {products.card === "list" ? (
-            <FaRectangleList size={"1.75rem"} />
-          ) : (
-            <FaRegRectangleList
-              size={"1.75rem"}
-              onClick={() => {
-                dispatch(setCard("list"));
-              }}
-            />
-          )}
-          <DropDown
-            button={
-              <button className={styles.button + " " + "button1"}>
-                Headphone type
-              </button>
-            }
-          >
-            <div className={styles.content}>
-              {getFilters !== null
-                ? getFilters.types.map((type) => (
-                    <p
-                      key={type}
-                      onClick={() => {
-                        setFilters((prev) => ({ ...prev, type }));
-                      }}
-                    >
-                      {type}
-                    </p>
-                  ))
-                : " "}
-            </div>
-          </DropDown>
-          <DropDown
-            button={
-              <button className={styles.button + " " + "button1"}>
-                Company
-              </button>
-            }
-          >
-            <div className={styles.content}>
-              {getFilters !== null
-                ? getFilters.brands.map((brand) => (
-                    <p
-                      key={brand}
-                      onClick={() => {
-                        setFilters((prev) => ({ ...prev, brand }));
-                      }}
-                    >
-                      {brand}
-                    </p>
-                  ))
-                : " "}
-            </div>
-          </DropDown>
-          <DropDown
-            button={
-              <button className={styles.button + " " + "button1"}>Color</button>
-            }
-          >
-            <div className={styles.content}>
-              {getFilters !== null
-                ? getFilters.colors.map((color) => (
-                    <p
-                      key={color}
-                      onClick={() => {
-                        setFilters((prev) => ({ ...prev, color }));
-                      }}
-                    >
-                      {color}
-                    </p>
-                  ))
-                : " "}
-            </div>
-          </DropDown>
-          <DropDown
-            button={
-              <button className={styles.button + " " + "button1"}>Price</button>
-            }
-          >
-            <div className={styles.content}>
-              <p
+          <div className={styles.icons}>
+            {products.card === "grid" ? (
+              <IoGrid size={"1.5rem"} />
+            ) : (
+              <IoGridOutline
+                size={"1.5rem"}
                 onClick={() => {
-                  setFilters((prev) => ({ ...prev, lte: 1000 }));
+                  dispatch(setCard("grid"));
                 }}
-              >
-                0 - 1000
-              </p>
-              <p
+              />
+            )}
+            {products.card === "list" ? (
+              <FaRectangleList size={"1.75rem"} />
+            ) : (
+              <FaRegRectangleList
+                size={"1.75rem"}
                 onClick={() => {
-                  setFilters((prev) => ({ ...prev, lte: 10000, gte: 1000 }));
+                  dispatch(setCard("list"));
                 }}
-              >
-                1000 - 10000
-              </p>
-              <p
-                onClick={() => {
-                  setFilters((prev) => ({ ...prev, lte: 20000, gte: 10000 }));
-                }}
-              >
-                10000 - 20000
-              </p>
-            </div>
-          </DropDown>
+              />
+            )}
+          </div>
+
+          <select
+            value={"Headphone type"}
+            id="myDropdown"
+            onChange={(e) => {
+              setFilters((prev) => ({ ...prev, type: e.target.value }));
+            }}
+            className={styles.select}
+          >
+            <option value="Headphone type" style={{ display: "none" }}>
+              Headphone type
+            </option>
+            {getFilters !== null
+              ? getFilters.types.map((type) => (
+                  <option key={type} className={styles.option} value={type}>
+                    {type}
+                  </option>
+                ))
+              : " "}
+          </select>
+          <select
+            value={"price"}
+            onChange={(e) => {
+              const [gte, lte] = e.target.value.split("-");
+              if (gte == "0 ") {
+                setFilters((prev) => ({ ...prev, gte: +gte }));
+              }
+              setFilters((prev) => ({ ...prev, lte: +lte, gte: +gte }));
+            }}
+            className={styles.select}
+          >
+            <option value="price" style={{ display: "none" }}>
+              price
+            </option>
+            <option className={styles.option} value={"0-1000"}>
+              0-1000
+            </option>
+            <option className={styles.option} value={"1000-5000"}>
+              1000-5000
+            </option>
+            <option className={styles.option} value={"5000-10000"}>
+              5000-10000
+            </option>
+          </select>
+          <select
+            value={"company"}
+            id="myDropdown"
+            onChange={(e) => {
+              setFilters((prev) => ({ ...prev, brand: e.target.value }));
+            }}
+            className={styles.select}
+          >
+            <option value="Company" style={{ display: "none" }}>
+              Company
+            </option>
+            {getFilters !== null
+              ? getFilters.brands.map((brand) => (
+                  <option key={brand} className={styles.option} value={brand}>
+                    {brand}
+                  </option>
+                ))
+              : " "}
+          </select>
+          <select
+            value={"Color"}
+            onChange={(e) => {
+              setFilters((prev) => ({ ...prev, color: e.target.value }));
+            }}
+            className={styles.select}
+          >
+            <option value="Color" style={{ display: "none" }}>
+              Color
+            </option>
+            {getFilters !== null
+              ? getFilters.colors.map((color) => (
+                  <option key={color} className={styles.option} value={color}>
+                    {color}
+                  </option>
+                ))
+              : " "}
+          </select>
         </div>
         <div className={styles.right}>
-          <DropDown
-            button={
-              <button className={styles.sort + " " + "button1"}>Sort by</button>
-            }
+          <select
+            value={"Sort"}
+            onChange={(e) => {
+              setFilters((prev) => ({ ...prev, sort: e.target.value }));
+            }}
+            className={styles.select}
           >
-            <div className={styles.content + " " + styles.sortcontent}>
-              <p
-                onClick={() => {
-                  setFilters((prev) => ({ ...prev, sort: "price%2B1" }));
-                }}
-              >
-                Price : Lowest
-              </p>
-              <p
-                onClick={() => {
-                  setFilters((prev) => ({ ...prev, sort: "price-1" }));
-                }}
-              >
-                Price : Highest
-              </p>
-              <p
-                onClick={() => {
-                  setFilters((prev) => ({ ...prev, sort: "name%2b1" }));
-                }}
-              >
-                name : (A-Z)
-              </p>
-              <p
-                onClick={() => {
-                  setFilters((prev) => ({ ...prev, sort: "name-1" }));
-                }}
-              >
-                name : (Z-A)
-              </p>
-            </div>
-          </DropDown>
+            <option value="Sort" style={{ display: "none" }}>
+              Sort
+            </option>
+            <option className={styles.option} value={"price%2B1"}>
+              Price : Lowest
+            </option>
+            <option className={styles.option} value={"price-1"}>
+              Price : Highest
+            </option>
+            <option className={styles.option} value={"name%2b1"}>
+              name : (A-Z)
+            </option>
+            <option className={styles.option} value={"name-1"}>
+              name : (Z-A)
+            </option>
+          </select>
         </div>
       </div>
     </div>

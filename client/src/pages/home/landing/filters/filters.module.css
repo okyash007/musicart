@@ -1,8 +1,10 @@
 .dropdown {
   display: flex;
   justify-content: space-between;
-  overflow-x: auto;
-  overflow-y: hidden;
+  overflow-x: scroll;
+  padding: 2%;
+  border-bottom: 2px solid #0000003a;
+  gap: 1rem;
 }
 
 .content {
@@ -63,12 +65,46 @@
   right: 0;
 }
 
-.search{
+.search {
   margin-bottom: 1%;
+}
+
+.select {
+  padding: 0.5rem 1rem;
+  border-right: 1rem solid transparent;
+  border-top: 0;
+  border-bottom: 0;
+  border-left: 0;
+  font-size: 1rem;
+  outline: none;
+  border-radius: 2rem;
+  transition: all 200ms;
+  &:hover {
+    box-shadow: 0 0 0 2px #000000;
+  }
+}
+
+.icons {
+  display: flex;
+  gap: 0.5rem;
+  width: max-content;
+  align-items: center;
 }
 
 @media only screen and (max-width: 550px) {
   .search {
+    display: none;
+  }
+  .right {
+    order: 1;
+  }
+  .left {
+    order: 2;
+  }
+  .select {
+    border-radius: 0.5rem;
+  }
+  .icons {
     display: none;
   }
 }

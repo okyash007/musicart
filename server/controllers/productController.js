@@ -40,7 +40,7 @@ export const getProducts = asyncHandler(async (req, res, next) => {
     return next(new apiError(400, "Invalid sort Inputs"));
   }
 
-  if (gte > lte) {
+  if (+gte > +lte) {
     return next(new apiError(400, "Invalid Inputs"));
   }
 
